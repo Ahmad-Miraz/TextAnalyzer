@@ -24,13 +24,14 @@ export const TextForm = (props) => {
     setText(newText);
     props.showAlert('Text Cleared','success');
   };
-  let myStyle = {
-    fontStyle: "italic"
-  };
+  // let myStyle = {
+  //   fontStyle: "italic"
+  // };
   
   const changeToItalic = () => {
-    const newText =`<span style=${myStyle.fontStyle}>${text}</span>`;
+    let newText =text;
     setText(newText);
+
     props.showAlert('Text Converted to Italic','success');
   };
   
@@ -40,7 +41,7 @@ export const TextForm = (props) => {
     props.showAlert('Text Copied','success');
 }
 const handleExtraSpaces = () => {
-  let newText = text.split(/[ ]+/);
+  const newText = text.split(/[ ]+/);
   setText(newText.join(" "));
   props.showAlert('Extra Space Removed','success');
 }
@@ -76,13 +77,13 @@ const handleExtraSpaces = () => {
         <p>
           {text.split(" ").length - 1} Words and {text.length} Characters
         </p>
+        <p>
+          You will need {0.008 * text.split(" ").length-0.008} minutes to read this
+          text.{" "}
+        </p>
       </div>
       <div className="container" style={{color: props.mode==='dark'?'white':'#042743'}}>
         <h1>Text Preview</h1>
-        <p>
-          You will need {0.008 * text.split(" ").length} minutes to read this
-          text.{" "}
-        </p>
         <p>{text}</p>
       </div>
     </>
