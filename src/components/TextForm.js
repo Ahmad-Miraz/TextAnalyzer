@@ -12,30 +12,37 @@ export const TextForm = (props) => {
   const changeUpperCaseClick = () => {
     const newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Text converted to Uppercase","success");
   };
   const changeLowerCaseClick = () => {
     const newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Text converted to Lowercase","success");
   };
   const clearButton = () => {
     const newText = "";
     setText(newText);
+    props.showAlert('Text Cleared','success');
   };
-  // let myStyle={
-  //   fontStyle:"italic"
-  // }
+  let myStyle = {
+    fontStyle: "italic"
+  };
+  
   const changeToItalic = () => {
-    const newText = text;
-    // <span style={myStyle}>newText</span>
+    const newText =`<span style=${myStyle.fontStyle}>${text}</span>`;
     setText(newText);
+    props.showAlert('Text Converted to Italic','success');
   };
+  
 
   const handleCopy = () => {
     navigator.clipboard.writeText(text); 
+    props.showAlert('Text Copied','success');
 }
 const handleExtraSpaces = () => {
   let newText = text.split(/[ ]+/);
   setText(newText.join(" "));
+  props.showAlert('Extra Space Removed','success');
 }
   return (
     <>
@@ -55,7 +62,7 @@ const handleExtraSpaces = () => {
         <button className="btn btn-primary mx-2" onClick={changeLowerCaseClick}>
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary mx-2" onClick={changeToItalic}>
+        <button className="btn btn-primary mx-2" onClick={changeToItalic} id="myStyle">
           Italic
         </button>
         <button className="btn btn-primary mx-2 " onClick={handleCopy}>Copy Text</button>
